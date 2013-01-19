@@ -43,6 +43,14 @@ public class Faker {
         fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
     }
 
+    public Faker(Locale locale, String region) {
+      logger.info("Using default locale " + locale);
+      String languageCode = locale.getLanguage();
+      Map valuesMap = (Map) Yaml.load(getClass().getClassLoader().getResourceAsStream(languageCode + "_" + region + ".yml"));
+      valuesMap = (Map) valuesMap.get(languageCode);
+      fakeValuesMap = (Map<String, Object>) valuesMap.get("faker");
+    }
+
     public String numerify(String numberString) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < numberString.length(); i++) {

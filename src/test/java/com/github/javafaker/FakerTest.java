@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 public class FakerTest {
     private static final Logger logger = LoggerFactory.getLogger(FakerTest.class);
     private Faker faker = new Faker();
+    private Faker fakerSd = new Faker(Locale.ENGLISH,"sd");
 
     @Test
     public void shouldFetchNames() {
@@ -34,7 +36,31 @@ public class FakerTest {
         Assert.assertNotNull(name);
     }
 
-    @Test
+  @Test
+  public void shouldFetchNamesSDregion() {
+    String firstName = fakerSd.firstName();
+    logger.info("Test first name: " + firstName);
+    Assert.assertNotNull(firstName);
+
+    String lastName = fakerSd.lastName();
+    logger.info("Test last name: " + lastName);
+    Assert.assertNotNull(lastName);
+
+    String prefix = fakerSd.prefix();
+    logger.info("Test prefix: " + prefix);
+    Assert.assertNotNull(prefix);
+
+    String suffix = fakerSd.suffix();
+    logger.info("Test suffix: " + suffix);
+    Assert.assertNotNull(suffix);
+
+    String name = fakerSd.name();
+    logger.info("Test name: " + name);
+    Assert.assertNotNull(name);
+  }
+
+
+  @Test
     public void testPhoneNumber() {
         String phoneNumber = faker.phoneNumber();
         logger.info("Phone number: " + phoneNumber);
